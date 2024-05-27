@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Main {
 
@@ -27,6 +28,24 @@ public class Main {
 
     }
 
+    public static class Timer implements Runnable{
+
+        @Override
+        public void run() {
+            int counter = 0;
+            while (counter< 5){
+                System.out.println(new Date());
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                counter++;
+            }
+            System.out.println("Таймер закончил работу");
+        }
+    }
+
     public static class JudgeTask implements Runnable{
         @Override
         public void run() {
@@ -52,6 +71,10 @@ public class Main {
             System.out.println("Работу закончил");
         }
     }
+
+    /**
+     * Класс реализующий механизм блокирующей очереди
+     */
 
     public  static class BlockingQueue {
         public ArrayList<Runnable> tasks = new ArrayList<>();
